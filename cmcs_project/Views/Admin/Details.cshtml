@@ -1,0 +1,31 @@
+@model CMCS.Models.Claim
+@{
+    ViewData["Title"] = "Claim Details";
+}
+<h2>Claim Details</h2>
+<div class="card p-3">
+    <p><strong>Lecturer:</strong> @Model.Lecturer</p>
+    <p><strong>Submitted:</strong> @Model.SubmittedAt.ToLocalTime()</p>
+    <p><strong>Hours:</strong> @Model.HoursWorked</p>
+    <p><strong>Rate:</strong> @Model.HourlyRate.ToString("F2")</p>
+    <p><strong>Amount:</strong> @Model.Amount.ToString("F2")</p>
+    <p><strong>Notes:</strong> @Model.Notes</p>
+    <p><strong>Status:</strong> @Model.Status</p>
+    <p><strong>File:</strong>
+        @if(!string.IsNullOrEmpty(Model.UploadedFileName)){
+            <a href="@Url.Action("Download","Claim", new { id = Model.Id })">Download file</a>
+        } else { <span class="text-muted">No file</span> }
+    </p>
+    @if(Model.Status == CMCS.Models.ClaimStatus.Pending) {
+        <form method="post" asp-action="Approve" asp-controller="Admin" class="d-inline">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button class="btn btn-success">Approve</button>
+        </form>
+        <form method="post" asp-action="Reject" asp-controller="Admin" class="d-inline ms-2">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button class="btn btn-danger">Reject</button>
+        </form>
+    } else {
+        <div class="mt-2"><em>No actions available — claim has been @Model.Status.</em></div>
+    }
+</div>

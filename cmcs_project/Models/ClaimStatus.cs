@@ -1,0 +1,1 @@
+namespace CMCS.Models; public enum ClaimStatus { Pending, Approved, Rejected }

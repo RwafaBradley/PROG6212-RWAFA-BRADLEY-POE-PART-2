@@ -1,0 +1,25 @@
+@model IEnumerable<CMCS.Models.Claim>
+@{
+    ViewData["Title"] = "My Claims";
+}
+<h2>My Claims</h2>
+<p><a class="btn btn-success" href="@Url.Action("Create","Claim")">Create new claim</a></p>
+<table class="table table-bordered table-striped">
+    <thead><tr><th>Submitted</th><th>Hours</th><th>Rate</th><th>Amount</th><th>Status</th><th>File</th></tr></thead>
+    <tbody>
+    @foreach(var c in Model){
+        <tr>
+            <td>@c.SubmittedAt.ToLocalTime()</td>
+            <td>@c.HoursWorked</td>
+            <td>@c.HourlyRate.ToString("F2")</td>
+            <td>@c.Amount.ToString("F2")</td>
+            <td>@c.Status</td>
+            <td>
+                @if(!string.IsNullOrEmpty(c.UploadedFileName)){
+                    <a href="@Url.Action("Download","Claim", new { id = c.Id })">Download</a>
+                } else { <span class="text-muted">No file</span> }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

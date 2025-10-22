@@ -1,0 +1,31 @@
+@model IEnumerable<CMCS.Models.Claim>
+@{
+    ViewData["Title"] = "Manage Claims";
+}
+<h2>All Claims</h2>
+<table class="table table-bordered table-hover">
+    <thead><tr><th>Lecturer</th><th>Submitted</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+    @foreach(var c in Model){
+        <tr>
+            <td>@c.Lecturer</td>
+            <td>@c.SubmittedAt.ToLocalTime()</td>
+            <td>@c.Amount.ToString("F2")</td>
+            <td>@c.Status</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="@Url.Action("Details","Admin", new { id = c.Id })">View</a>
+                @if(c.Status == CMCS.Models.ClaimStatus.Pending) {
+                    <form method="post" asp-action="Approve" asp-controller="Admin" class="d-inline ms-1">
+                        <input type="hidden" name="id" value="@c.Id" />
+                        <button class="btn btn-sm btn-success">Approve</button>
+                    </form>
+                    <form method="post" asp-action="Reject" asp-controller="Admin" class="d-inline ms-1">
+                        <input type="hidden" name="id" value="@c.Id" />
+                        <button class="btn btn-sm btn-danger">Reject</button>
+                    </form>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
