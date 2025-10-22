@@ -2167,11 +2167,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\USER-PC\\Downloads\\CMCS_Project_updated\\cmcs_project\\CMCS.csproj",
+      "projectUniqueName": "C:\\Users\\USER-PC\\Downloads\\CMCS_Project_updated (2)\\CMCS_Project_updated\\cmcs_project\\CMCS.csproj",
       "projectName": "CMCS",
-      "projectPath": "C:\\Users\\USER-PC\\Downloads\\CMCS_Project_updated\\cmcs_project\\CMCS.csproj",
+      "projectPath": "C:\\Users\\USER-PC\\Downloads\\CMCS_Project_updated (2)\\CMCS_Project_updated\\cmcs_project\\CMCS.csproj",
       "packagesPath": "C:\\Users\\USER-PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\USER-PC\\Downloads\\CMCS_Project_updated\\cmcs_project\\obj\\",
+      "outputPath": "C:\\Users\\USER-PC\\Downloads\\CMCS_Project_updated (2)\\CMCS_Project_updated\\cmcs_project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

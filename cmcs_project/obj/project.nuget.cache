@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xr5W7hnNLsA=",
+  "dgSpecHash": "x++7tDMiBmM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\USER-PC\\Downloads\\CMCS_Project_updated\\cmcs_project\\CMCS.csproj",
+  "projectFilePath": "C:\\Users\\USER-PC\\Downloads\\CMCS_Project_updated (2)\\CMCS_Project_updated\\cmcs_project\\CMCS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER-PC\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.3.0\\microsoft.aspnetcore.authentication.2.3.0.nupkg.sha512",
     "C:\\Users\\USER-PC\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.3.0\\microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",
