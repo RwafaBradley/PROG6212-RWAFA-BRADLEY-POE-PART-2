@@ -16,16 +16,32 @@ public class ClaimControllerTests
     [Fact]
     public void MyClaims_Returns_View_With_Model()
     {
+        // arrange
         var mockRepo = new Mock<IClaimRepository>();
-        mockRepo.Setup(r => r.GetByLecturer("lect")).Returns(new List<Claim> { new Claim { Lecturer = "lect" } });
+        mockRepo.Setup(r => r.GetByLecturer("lect"))
+                .Returns(new List<Claim> { new Claim { Lecturer = "lect" } });
 
         var mockEnv = new Mock<IWebHostEnvironment>();
         var controller = new ClaimController(mockRepo.Object, mockEnv.Object);
 
-        // Mock user identity by setting ControllerContext if needed - here we just call method through controller.User not populated.
-        // To keep simple, we'll verify that method returns a ViewResult and model is the expected list
-        var res = controller.MyClaims();
-        Assert.IsType<ViewResult>(res);
+       
+        var claims = new[] { new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Name, "lect") };
+        var identity = new System.Security.Claims.ClaimsIdentity(claims, "TestAuth");
+        var principal = new System.Security.Claims.ClaimsPrincipal(identity);
+
+        controller.ControllerContext = new Microsoft.AspNetCore.Mvc.ControllerContext
+        {
+            HttpContext = new Microsoft.AspNetCore.Http.DefaultHttpContext
+            {
+                User = principal
+            }
+        };
+
+        
+        var result = controller.MyClaims();
+
+       
+        Assert.IsType<ViewResult>(result);
     }
 
     [Fact]
@@ -62,7 +78,7 @@ public class ClaimControllerTests
         var res = controller.Download(Guid.NewGuid());
         Assert.IsType<PhysicalFileResult>(res);
 
-        // cleanup
+      
         File.Delete(filePath);
         Directory.Delete(Path.Combine(tempRoot, "uploads"));
         Directory.Delete(tempRoot);
